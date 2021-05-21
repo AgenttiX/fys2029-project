@@ -1,5 +1,5 @@
 # University of Helsinki course FYS2029 Quantum Computing project work: Quantum machine learning
-
+## Work in progress
 
 
 Due to various other exams and project works the available time was limited to a few days,
