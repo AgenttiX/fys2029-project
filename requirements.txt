@@ -1,0 +1,15 @@
+cirq
+jupyter
+jupyterlab
+# kaggle
+matplotlib
+seaborn
+sympy
+tensorboard
+# TensorFlow Quantum works only with specific versions of Tensorflow
+tensorflow == 2.4.1
+tensorflow-quantum == 0.5.0
+
+# TensorFlow Quantum is not compatible with ROCm, but results in various
+# "undefined symbol" errors
+# tensorflow-rocm
