@@ -31,6 +31,8 @@ jobs:
         pip --cache-dir=.pip install tensorflow==2.4.1
         pip --cache-dir=.pip install tensorflow-quantum==0.5.0
         pip --cache-dir=.pip install -r requirements.txt
+    - name: Test libraries
+      run: python ${{ github.workspace }}/test_libs.py
     - name: Convert notebooks
       run: jupyter nbconvert --to=script --output-dir=${{ github.workspace }}/converted_notebooks/ ${{ github.workspace }}/*.ipynb
     - name: Run Pylint
