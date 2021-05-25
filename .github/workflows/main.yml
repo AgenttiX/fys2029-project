@@ -6,9 +6,10 @@ jobs:
     steps:
     - name: Setup Python
       uses: actions/setup-python@v2
-      # with:
-        # Python 3.9 does not have TensorFlow 2.4.1 available, as 2.5.0 is the oldest supported version.
-        # python-version: 3.8
+      with:
+        # As of 2021-05-25, Python 3.9 does not have TensorFlow Quantum available.
+        # Also, Python 3.9 does not have TensorFlow 2.4.1 available, as 2.5.0 is its oldest supported version.
+        python-version: 3.8
     - name: Print Python version
       run: python -V
     - name: Checkout
