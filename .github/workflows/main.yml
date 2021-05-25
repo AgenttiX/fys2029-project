@@ -14,7 +14,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: .pip
-        key: pip-${{ runner.os }}-${{ hashFiles('src/requirements.txt') }}
+        key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
         restore-keys: |
           pip-${{ runner.os }}-
           pip-
@@ -22,16 +22,16 @@ jobs:
       run: |
         pip --cache-dir=.pip install --upgrade pip
         pip --cache-dir=.pip install pylint wheel
-        pip --cache-dir=.pip install -r src/requirements.txt
+        pip --cache-dir=.pip install -r requirements.txt
     - name: Convert notebooks
       run: jupyter nbconvert --to=script --output-dir=${{ github.workspace }}/converted_notebooks/ ${{ github.workspace }}/*.ipynb
     - name: Run Pylint
       run: pylint converted_notebooks 2>&1 | tee pylint.txt
-      working-directory: ${{ github.workspace }}/src
+      working-directory: ${{ github.workspace }}
     - name: Upload results
       uses: actions/upload-artifact@v2
       with:
         name: Lint
         path: |
-          ${{ github.workspace }}/src/pylint.txt
+          ${{ github.workspace }}/pylint.txt
         if-no-files-found: error
