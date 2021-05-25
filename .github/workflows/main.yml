@@ -1,0 +1,37 @@
+name: CI
+on: push
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Python
+      uses: actions/setup-python@v2
+    - name: Print Python version
+      run: python -V
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Load pip cache
+      uses: actions/cache@v2
+      with:
+        path: .pip
+        key: pip-${{ runner.os }}-${{ hashFiles('src/requirements.txt') }}
+        restore-keys: |
+          pip-${{ runner.os }}-
+          pip-
+    - name: Install requirements
+      run: |
+        pip --cache-dir=.pip install --upgrade pip
+        pip --cache-dir=.pip install pylint wheel
+        pip --cache-dir=.pip install -r src/requirements.txt
+    - name: Convert notebooks
+      run: jupyter nbconvert --to=script --output-dir=${{ github.workspace }}/converted_notebooks/ ${{ github.workspace }}/*.ipynb
+    - name: Run Pylint
+      run: pylint converted_notebooks 2>&1 | tee pylint.txt
+      working-directory: ${{ github.workspace }}/src
+    - name: Upload results
+      uses: actions/upload-artifact@v2
+      with:
+        name: Lint
+        path: |
+          ${{ github.workspace }}/src/pylint.txt
+        if-no-files-found: error
