@@ -1,15 +1,27 @@
-cirq
-jupyter
-jupyterlab
+cirq >= 0.11.0
+jupyter >= 1.0.0
+jupyterlab >= 3.0.16
 # kaggle
-matplotlib
-seaborn
-sympy
-tensorboard
-# TensorFlow Quantum may work only with specific versions of Tensorflow
-tensorflow >= 2.4.1
-tensorflow-quantum >= 0.5.0
+matplotlib >= 3.4.2
+seaborn >= 0.11.1
+sympy >= 1.5
+tensorboard >= 2.5.0
 
-# TensorFlow Quantum is not compatible with ROCm, but results in various
-# "undefined symbol" errors
+# TensorFlow and TensorFlow Quantum should be installed separately to override their dependency conflicts manually.
+# tensorflow
+# tensorflow-quantum
+
+# These versions are compatible with each other and CUDA 11.3, but have to be installed manually
+# due to a dependency conflict with grpcio:
+# "ERROR: pip's dependency resolver does not currently take into account all the packages that are installed.
+# This behaviour is the source of the following dependency conflicts.
+# tensorflow 2.4.1 requires grpcio~=1.32.0, but you have grpcio 1.30.0 which is incompatible."
+# tensorflow == 2.4.1
+# tensorflow-quantum == 0.5.0
+
+# These versions would work together without dependency conflicts, but they are too old to support CUDA 11.3
+# tensorflow == 2.3.2
+# tensorflow-quantum == 0.4.0
+
+# TensorFlow Quantum is not compatible with ROCm, but results in various "undefined symbol" errors
 # tensorflow-rocm
