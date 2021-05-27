@@ -36,10 +36,10 @@ jobs:
     - name: Install FOSSA
       run: |
         curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash
-        - name: Run FOSSA
-          run: fossa analyze
-          env:
-            FOSSA_API_KEY: ${{ secrets.FOSSA_API_KEY }}
+    - name: Run FOSSA
+      run: fossa analyze
+      env:
+        FOSSA_API_KEY: ${{ secrets.FOSSA_API_KEY }}
     - name: Convert notebooks
       run: jupyter nbconvert --to=script --output-dir=${{ github.workspace }}/converted_notebooks/ ${{ github.workspace }}/*.ipynb
     - name: Run Pylint
