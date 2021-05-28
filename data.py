@@ -36,6 +36,7 @@ def load_data() -> tp.Tuple[tp.Tuple[np.ndarray, np.ndarray], tp.Tuple[np.ndarra
 
 
 def remove_contradicting(xs: np.ndarray, ys: np.ndarray) -> tp.Tuple[np.ndarray, np.ndarray]:
+    """Filter the given dataset so, that images which correspond to both labels are thrown out."""
     # Defaultdict has a default value for new elements
     # https://docs.python.org/3/library/collections.html#collections.defaultdict
     mapping = collections.defaultdict(set)
@@ -57,13 +58,13 @@ def remove_contradicting(xs: np.ndarray, ys: np.ndarray) -> tp.Tuple[np.ndarray,
             # Throw out images that match more than one label.
             pass
 
-    num_uniq_3 = sum(1 for value in mapping.values() if len(value) == 1 and True in value)
-    num_uniq_6 = sum(1 for value in mapping.values() if len(value) == 1 and False in value)
+    num_uniq_true = sum(1 for value in mapping.values() if len(value) == 1 and True in value)
+    num_uniq_false = sum(1 for value in mapping.values() if len(value) == 1 and False in value)
     num_uniq_both = sum(1 for value in mapping.values() if len(value) == 2)
 
     print("Number of unique images:", len(mapping.values()))
-    print("Number of unique 3s: ", num_uniq_3)
-    print("Number of unique 6s: ", num_uniq_6)
+    print("Number of unique images with label True:", num_uniq_true)
+    print("Number of unique images with label False:", num_uniq_false)
     print("Number of unique contradicting labels (both 3 and 6): ", num_uniq_both)
     print()
     print("Initial number of images: ", len(xs))
