@@ -38,13 +38,13 @@ def create_classical_model() -> tf.keras.Sequential:
     ])
 
 
-def create_classical_model2(input_shape: tp.Tuple[int, int], num_classes: int = 1) -> tf.keras.Sequential:
+def create_classical_model2(input_shape: tp.Tuple[int, int, int], num_classes: int = 1) -> tf.keras.Sequential:
     """A newer classical network
     Based on
     https://keras.io/examples/vision/mnist_convnet/
     """
     return tf.keras.Sequential([
-        tf.keras.Input(shape=(*input_shape, 1)),
+        tf.keras.Input(shape=input_shape),
         tf.keras.layers.Conv2D(32, kernel_size=(3, 3), activation="relu"),
         layers.MaxPooling2D(pool_size=(2, 2)),
         layers.Conv2D(64, kernel_size=(3, 3), activation="relu"),

@@ -65,7 +65,7 @@ def remove_contradicting(xs: np.ndarray, ys: np.ndarray) -> tp.Tuple[np.ndarray,
     print("Number of unique images:", len(mapping.values()))
     print("Number of unique images with label True:", num_uniq_true)
     print("Number of unique images with label False:", num_uniq_false)
-    print("Number of unique contradicting labels (both 3 and 6): ", num_uniq_both)
+    print("Number of unique contradicting labels (both labels): ", num_uniq_both)
     print()
     print("Initial number of images: ", len(xs))
     print("Remaining non-contradicting unique images: ", len(new_x))
