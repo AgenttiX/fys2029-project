@@ -50,6 +50,8 @@ def create_classical_model2(input_shape: tp.Tuple[int, int], num_classes: int = 
         layers.Conv2D(64, kernel_size=(3, 3), activation="relu"),
         layers.MaxPooling2D(pool_size=(2, 2)),
         layers.Flatten(),
+        # This additional layer has been added to fix very slow learning
+        tf.keras.layers.Dense(128, activation='softmax'),
         layers.Dropout(0.5),
         layers.Dense(num_classes, activation="softmax"),
     ])
