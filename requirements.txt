@@ -4,7 +4,7 @@ jupyterlab >= 3.0.16
 # kaggle
 matplotlib >= 3.4.2
 seaborn >= 0.11.1
-sympy >= 1.5
+sympy >= 1.14.0
 tensorboard >= 2.5.0
 
 # TensorFlow and TensorFlow Quantum should be installed separately to override their dependency conflicts manually.
