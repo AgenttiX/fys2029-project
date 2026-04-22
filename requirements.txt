@@ -2,7 +2,7 @@ cirq >= 0.11.0
 jupyter >= 1.0.0
 jupyterlab >= 3.0.16
 # kaggle
-matplotlib >= 3.4.2
+matplotlib >= 3.10.8
 seaborn >= 0.11.1
 sympy >= 1.5
 tensorboard >= 2.5.0
